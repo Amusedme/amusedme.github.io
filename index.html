@@ -5,17 +5,73 @@
     <meta charset="UTF-8">
     <title>Chess</title>
     <style type="text/css">
+    a{
+        text-decoration: none;
+        color:skyblue;
+    }
+    h2 {
+        width: 100%;
+        text-align: center;
+        margin: 50px auto;
+    }
+    
     canvas {
         display: block;
-        margin: 50px auto;
+        margin: 90px auto;
         box-shadow: -2px -2px 2px #efefef, 5px 5px 5px #b9b9b9;
+    }
+    
+    .instr {
+        display: block;
+        left:50%;
+        top: 17%;
+        transform: translate(-50%,-50%);
+        position: absolute;
+        text-align: center;
+        height:30px;
+    }
+    
+    .circle {
+        width: 20px;
+        height: 20px;
+        float: left;
+        border-radius: 20px;
+        border: 1px solid;
+    }
+    .black{
+        background: black;
+    }
+    .font {
+        color: red;
+        display: block;
+        float: left;
+        margin-left: 3px;
+        margin-right: 20px;
+    }
+    .flag{
+        color:black;
+    }
+    .step{
+        margin-left: -20px;
     }
     </style>
 </head>
 
 <body>
+    <a href="https://github.com/AmusedMe/Backgammon" target="_blank">View on GitHub</a>
+    <h2>人机对战五子棋</h2>
+    <div class="instr">
+    <div>
+        <div class="white circle"></div>
+        <span class="font">电脑</span>
+        <div class="black circle"></div>
+        <span class="font">人脑</span>
+        <span class="font flag">当前步数：</span>
+        <span id="step" class="font step">0</span>
+    </div></div>
     <canvas id="chess" width="450px" height="450px"></canvas>
     <script type="text/javascript" src="js/script.js"></script>
 </body>
+<script src="js/script.js"></script>
 
 </html>

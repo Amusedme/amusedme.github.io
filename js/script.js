@@ -7,7 +7,6 @@
  */
 
 
-
 //存放棋盘的落子坐标二维数组
 var chessBoard = [];
 
@@ -141,7 +140,7 @@ var oneStep = function(i, j, me) {
  * @return 
  */
 chess.onclick = function(e) {
-
+	document.getElementById("step").innerHTML = (document.getElementById("step").innerHTML*1+1);
     if (over) {
         return;
     }
@@ -172,7 +171,8 @@ chess.onclick = function(e) {
         if (!over) {
             //成功落子后交换棋子颜色
             me = !me;
-            computerAI();
+            setTimeout(computerAI,300);
+            //computerAI();
         }
     }
 }

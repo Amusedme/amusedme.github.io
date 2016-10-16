@@ -1,7 +1,7 @@
 <template>
   <footer class="footer-warp">
     <section class="container">
-      <p class="copyright">© Copyright 2016 {{user.name}}</p>
+      <p class="copyright">{{user.copyRight}}</p>
     </section>
   </footer>
 </template>

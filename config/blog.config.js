@@ -10,7 +10,7 @@ const blogInfo = {
   version: '2.1.0',
   slogan: 'Everything Counts',
   job: 'Everything Counts',
-  copyRight: 'Copyright © 2016 Miscanthus.tech All Rights Reserved',
+  copyRight: 'Copyright © 2016 skihi.cn All Rights Reserved',
   headurl: 'dist/imgs/logo-square.png',
   rootPath: 'posts/',
   listPath: 'posts/list.json'

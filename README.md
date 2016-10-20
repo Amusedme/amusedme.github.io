@@ -1,7 +1,7 @@
 # 记录着前端填坑之旅
 
 <br />
-我的博客地址：[枯芒草---前端小博客](http://blog.miscanthus.tech)
+我的博客地址：[枯芒草---前端小博客](http://skihi.cn)
 
 
 

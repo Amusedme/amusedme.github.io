@@ -1,8 +1,11 @@
 <template>
   <section class="container">
-    <spinner :show="!posts.content"></spinner>
+    <spinner :hide="!posts.content.length || !failedToLoad"></spinner>
     <h1 class="article-title">{{posts.title}}</h1>
     <article class="article-content" v-html="posts.content | marked"></article>
+    <not-found v-if="failedToLoad">
+      <p>没找到相关文章。</p>
+    </notFound>
   </section>
 </template>
 
@@ -30,7 +33,8 @@
         posts: {
           title: '',
           content: ''
-        }
+        },
+         failedToLoad: false
       };
     },
     props: ['postsList'],
@@ -40,34 +44,29 @@
     route: {
       data(transition) {
         let path = transition.to.path;
-        let title = transition.to.params.any.replace(/(.*\/)*([^.]+).*/ig, '$2');
-        if(!path || !title) throw '好歹给个正确的路径啊';
-        return getPosts(path).then((data)=>{
-          // 返回获取好的数据
-          return {
-            posts: {
-              title: title,
-              content: data
+        let pathName = transition.to.params.any;
+        let startPos = pathName.lastIndexOf('/') + 1;
+        let endPos = pathName.lastIndexOf('.') < 1 ? pathName.length : pathName.lastIndexOf('.');
+        let fileName = pathName.substring(startPos, endPos);
+        if(!path.length) throw Error('路径不能为空');
+        return fetch(path)
+          .then((res) => {
+            if (!res.ok || !res.statusText === 'OK') return '';
+            return res.text();
+          })
+          .then((text) => {
+            // 返回获取好的数据
+            return {
+              posts: {
+                title: fileName,
+                content: text
+              },
+              failedToLoad: !text.length
             }
-          }
-        });
+          });
       }
     }
   };
-
-  function getPosts (path) {
-    if (!path) return;
-    return fetch(path)
-      .then((res)=>{
-        return res.text();
-      })
-      .then((text) => {
-        return text;
-      })
-      .catch((ex) => {
-        return console.error('parsing failed', ex);
-      });
-  }
 
 </script>
 
